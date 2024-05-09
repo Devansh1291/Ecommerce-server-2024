@@ -40,16 +40,24 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
 
-app.use("/api/v1/user",userRoute);
-app.use("/api/v1/product",productRoute);
-app.use("/api/v1/order",orderRoute);
-app.use("/api/v1/payment",paymentRoute);
-app.use("/api/v1/dashboard",dashboardRoute);
+app.get("/", (req, res) => {
+  res.send("API Working with /api/v1");
+});
 
-app.use("/uploads",express.static("uploads"));
+app.get("/", (req, res) => {
+    res.send("API Working with /api/v1");
+  });
+  
+// Using Routes
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/product", productRoute);
+app.use("/api/v1/order", orderRoute);
+app.use("/api/v1/payment", paymentRoute);
+app.use("/api/v1/dashboard", dashboardRoute);
+
+app.use("/uploads", express.static("uploads"));
 app.use(errorMiddleware);
 
-app.listen(port,()=>{
-    console.log(`Server is working on http://localhost:${port}`);
-})
-
+app.listen(port, () => {
+  console.log(`Express is working on http://localhost:${port}`);
+});
