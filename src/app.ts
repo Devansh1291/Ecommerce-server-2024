@@ -38,12 +38,7 @@ const app=express();
 //importing middlewares
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(cors({
-  
-		origin:"https://ecommerce-frontend-2024-alpha.vercel.app",
-		credentials:true,
-
-}));
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("API Working with /api/v1");
